@@ -1,0 +1,7 @@
+#%PAM-1.0
+auth      required  pam_rootok.so
+account   include   base-account
+session   include   base-session
+
+# Can't change password
+password  required pam_deny.so

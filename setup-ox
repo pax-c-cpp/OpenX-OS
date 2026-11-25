@@ -1,0 +1,149 @@
+
+#!/bin/sh
+# setup-ox — OpenX System Setup Utility
+# SPDX-License-Identifier: BSD-2-Clause
+
+VERSION="0.1.0"
+
+# Setup tools provided by Alpine's alpine-conf package.
+TOOLS="
+setup-alpine|Run complete system setup
+setup-keymap|Configure keyboard layout
+setup-hostname|Configure system hostname
+setup-interfaces|Configure network interfaces
+setup-dns|Configure DNS
+setup-timezone|Configure timezone
+setup-ntp|Configure time synchronization
+setup-proxy|Configure network proxy
+setup-repositories|Configure package repositories
+setup-apkcache|Configure APK cache
+setup-lbu|Configure local backup
+setup-sshd|Configure SSH server
+setup-user|Create or configure user
+"
+
+find_tool() {
+    name="$1"
+
+    for dir in /sbin /usr/sbin /bin /usr/bin; do
+        if [ -x "$dir/$name" ]; then
+            printf '%s\n' "$dir/$name"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+run_tool() {
+    tool="$1"
+
+    path="$(find_tool "$tool")" || {
+        echo
+        echo "setup-ox: '$tool' is not installed."
+        echo "Install Alpine's alpine-conf package to get setup tools."
+        return 1
+    }
+
+    echo
+    echo "Starting: $tool"
+    echo "------------------------------"
+
+    "$path"
+    status=$?
+
+    echo
+    if [ "$status" -eq 0 ]; then
+        echo "$tool completed."
+    else
+        echo "$tool exited with status $status."
+    fi
+
+    return "$status"
+}
+
+show_menu() {
+    clear 2>/dev/null
+
+    echo "================================"
+    echo "       OpenX Setup Utility"
+    echo "          setup-ox v$VERSION"
+    echo "================================"
+    echo
+    echo "Select a setup tool:"
+    echo
+
+    i=1
+
+    printf '%s\n' "$TOOLS" |
+    while IFS='|' read -r tool description; do
+        [ -n "$tool" ] || continue
+
+        if find_tool "$tool" >/dev/null; then
+            printf " %2s) %-22s %s\n" "$i" "$tool" "$description"
+        fi
+
+        i=$((i + 1))
+    done
+
+    echo
+    echo "  0) Exit"
+    echo
+}
+
+main() {
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "setup-ox: Please run as root."
+        exit 1
+    fi
+
+    while :; do
+        show_menu
+
+        printf "setup-ox> "
+        read -r choice
+
+        case "$choice" in
+            0|q|Q|exit)
+                echo "Exiting setup-ox."
+                exit 0
+                ;;
+            ''|*[!0-9]*)
+                echo "Invalid selection."
+                sleep 1
+                continue
+                ;;
+        esac
+
+        i=1
+        selected=""
+
+        while IFS='|' read -r tool description; do
+            [ -n "$tool" ] || continue
+
+            if find_tool "$tool" >/dev/null; then
+                if [ "$i" -eq "$choice" ]; then
+                    selected="$tool"
+                    break
+                fi
+
+                i=$((i + 1))
+            fi
+        done <<EOF
+$TOOLS
+EOF
+
+        if [ -n "$selected" ]; then
+            run_tool "$selected"
+        else
+            echo "Invalid selection."
+        fi
+
+        echo
+        printf "Press Enter to return to menu..."
+        read -r pause
+    done
+}
+
+main "$@"
+

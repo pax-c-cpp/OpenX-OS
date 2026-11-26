@@ -11,7 +11,7 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Component | Current choice |
 |---|---|
 | Base root filesystem | Alpine Mini RootFS |
-| Kernel | Alpine Linux `linux-lts` package |
+| Kernel | Alpine Linux `linux-stable` package |
 | C library | musl |
 | Basic utilities | BusyBox |
 | Init and service manager | OpenRC |

@@ -15,7 +15,7 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Kernel | Alpine Linux `linux-stable` package |
 | C library | musl |
 | Basic utilities | BusyBox |
-| Init and service manager | OpenRC + Runit|
+| Init and service manager | OpenRC|
 | Package manager | Alpine `apk` |
 | Display server | Xorg (X11) |
 | Window manager | IceWM |

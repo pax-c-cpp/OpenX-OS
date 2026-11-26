@@ -35,3 +35,7 @@ OpenX currently integrates existing upstream software; it does not claim to have
 ## Project readiness
 
 OpenX is ready as a project and can be presented, documented, and developed under its own identity. Project readiness should not be confused with verification of every build, installation method, hardware configuration, or release image. For a specific release, publish the exact artifact and its actual test results.
+
+# OpenX on Grub2
+
+<img width="722" height="454" alt="Screenshot_2026-11-26_18-42-36" src="https://github.com/user-attachments/assets/079fb905-3b9d-4eda-a6b7-01249c6f3bc1" />

@@ -1,4 +1,4 @@
-<img width="480" height="480" alt="1357(1)" src="https://github.com/user-attachments/assets/22113cd0-0836-4e96-b50e-e2f0239a4602" /># OpenX
+<img width="30" height="30" alt="1357(1)" src="https://github.com/user-attachments/assets/22113cd0-0836-4e96-b50e-e2f0239a4602" /># OpenX
 <img width="1282" height="854" alt="Screenshot_2026-11-27_09-57-28" src="https://github.com/user-attachments/assets/bc180798-0c3b-4db7-a0db-f0439b5de3fa" />
 
 

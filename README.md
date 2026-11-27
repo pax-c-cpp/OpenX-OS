@@ -1,5 +1,6 @@
 # OpenX
-<img width="722" height="454" alt="Screenshot_2026-11-26_17-33-02" src="https://github.com/user-attachments/assets/1e55acd4-8785-4b21-a5df-760b64acadcf" />
+<img width="1282" height="854" alt="Screenshot_2026-11-27_09-57-28" src="https://github.com/user-attachments/assets/bc180798-0c3b-4db7-a0db-f0439b5de3fa" />
+
 
 **OpenX is an independent Linux operating system project focused on simplicity, efficiency, privacy, and user control.** The project is ready to be presented as an established OS project, with a defined identity, repository, license, technical direction, and documentation.
 

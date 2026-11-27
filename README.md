@@ -20,8 +20,8 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Package manager | Alpine `apk` |
 | Display server | Xorg (X11) |
 | Window manager | IceWM |
-| Display manager | LightDM |
-| Web browser | Dillo |
+| Display manager | LXDM |
+| Web browser | badwolf |
 
 OpenX currently integrates existing upstream software; it does not claim to have a separately developed kernel.
 
@@ -39,4 +39,10 @@ OpenX is ready as a project and can be presented, documented, and developed unde
 
 # OpenX on Grub2
 
-<img width="722" height="454" alt="Screenshot_2026-11-26_18-42-36" src="https://github.com/user-attachments/assets/079fb905-3b9d-4eda-a6b7-01249c6f3bc1" />
+<img width="722" height="454" alt="Srceenshot_2026-11-26_18-42-36" src="https://github.com/user-attachments/assets/079fb905-3b9-4eda-a6b7-01249c6f3bc1" />
+
+# another thing
+
+the system is getting developed by one person so please i wish that if you can contat
+me in telegram : pax1c1cpp , or email me on gmail : tfstcddgvdrt@gmail.com
+any pull request or any help to the project will be accepted for sure  

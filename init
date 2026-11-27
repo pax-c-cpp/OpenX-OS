@@ -1,0 +1,63 @@
+#!/bin/sh
+/bin/busybox --install -s
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+
+mount -t devtmpfs devtmpfs /dev 2>/dev/null
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+
+mkdir -p /cdrom /squash /newroot /run/overlay
+
+modprobe loop
+modprobe ata_piix
+modprobe sr_mod
+modprobe isofs
+modprobe squashfs
+modprobe overlay
+
+echo "OpenX: searching for live media..."
+
+FOUND=0
+
+for dev in /dev/sr0 /dev/sr1 /dev/cdrom; do
+    if mount -t iso9660 -o ro "$dev" /cdrom 2>/dev/null; then
+        if [ -f /cdrom/openx-root.squashfs ]; then
+            FOUND=1
+            break
+        fi
+        umount /cdrom
+    fi
+done
+
+if [ "$FOUND" -ne 1 ]; then
+    echo "OpenX: live ISO not found!"
+    exec sh
+fi
+
+echo "OpenX: mounting live root..."
+
+mount -t squashfs -o ro,loop \
+    /cdrom/openx-root.squashfs /squash || exec sh
+
+mount -t tmpfs tmpfs /run/overlay
+mkdir -p /run/overlay/upper /run/overlay/work
+
+mount -t overlay overlay \
+    -o lowerdir=/squash,upperdir=/run/overlay/upper,workdir=/run/overlay/work \
+    /newroot || exec sh
+
+mkdir -p /newroot/dev /newroot/proc /newroot/sys
+mkdir -p /newroot/run /newroot/tmp
+
+mount --bind /dev /newroot/dev
+mount --bind /proc /newroot/proc
+mount --bind /sys /newroot/sys
+mount --bind /run /newroot/run
+mount --bind /tmp /newroot/tmp
+
+echo "OpenX: starting system..."
+
+exec switch_root /newroot /sbin/init

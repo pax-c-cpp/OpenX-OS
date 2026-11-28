@@ -21,7 +21,7 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Display server | Xorg (X11) |
 | Window manager | IceWM |
 | Display manager | LXDM |
-| Web browser | firefox-ESR |
+| Web browser | epiphany |
 
 OpenX currently integrates existing upstream software; it does not claim to have a separately developed kernel.
 

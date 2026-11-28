@@ -13,7 +13,7 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Component | Current choice |
 |---|---|
 | Base root filesystem | Alpine Mini RootFS |
-| Kernel | Alpine Linux `linux-stable` package |
+| Kernel | custom linux 6.18.65 |
 | C library | musl |
 | Basic utilities | BusyBox |
 | Init and service manager | OpenRC|
@@ -23,7 +23,7 @@ OpenX brings together selected upstream components into a cohesive Linux system 
 | Display manager | LXDM |
 | Web browser | epiphany |
 
-OpenX currently integrates existing upstream software; it does not claim to have a separately developed kernel.
+OpenX have its own kernel now!!!!
 
 ## Project principles
 
